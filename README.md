@@ -1,2 +1,2 @@
 # clear_markdown
-an html webpage that can clear markdown words
+an HTML webpage that can clear markdown format

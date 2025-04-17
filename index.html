@@ -157,37 +157,37 @@
             }
             
             function cleanMarkdown(text) {
-                return text
-                    // 标题
-                    .replace(/^#+\s+(.*$)/gm, '$1')
-                    // 粗体、斜体
-                    .replace(/(\*\*|__)(.*?)\1/g, '$2')
-                    .replace(/(\*|_)(.*?)\1/g, '$2')
-                    // 删除线
-                    .replace(/~~(.*?)~~/g, '$1')
-                    // 内联代码
-                    .replace(/`([^`]+)`/g, '$1')
-                    // 代码块
-                    .replace(/```[\s\S]*?\n([\s\S]*?)\n```/g, '$1')
-                    // 链接 - 修改这里保留链接文本
-                    .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
-                    // 图片
-                    .replace(/!\[([^\]]*)\]\([^\)]+\)/g, '$1')
-                    // 引用
-                    .replace(/^\>\s+/gm, '')
-                    // 无序列表 - 修改这里保留开头的"-"
-                    .replace(/^([\*\+])\s+/gm, '- ')
-                    // 有序列表（保留数字和点，只去除Markdown格式）
-                    .replace(/^(\d+)\.\s+/gm, '$1. ')
-                    // 表格
-                    .replace(/^\|.+\|$/gm, '')
-                    // 水平线
-                    .replace(/^[-*_]{3,}$/gm, '')
-                    // HTML标签（简单处理）
-                    .replace(/<[^>]+>/g, '')
-                    // 多余的空行
-                    .replace(/\n\s*\n/g, '\n\n');
-            }
+            return text
+                // 标题
+                .replace(/^#+\s+(.*$)/gm, '$1')
+                // 粗体、斜体
+                .replace(/(\*\*|__)(.*?)\1/g, '$2')
+                .replace(/(\*|_)(.*?)\1/g, '$2')
+                // 删除线
+                .replace(/~~(.*?)~~/g, '$1')
+                // 内联代码
+                .replace(/`([^`]+)`/g, '$1')
+                // 代码块
+                .replace(/```[\s\S]*?\n([\s\S]*?)\n```/g, '$1')
+                // 链接 - 修改为保留文本和URL [text](url) → text (url)
+                .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '$1 ($2)')
+                // 图片
+                .replace(/!\[([^\]]*)\]\([^\)]+\)/g, '$1')
+                // 引用
+                .replace(/^\>\s+/gm, '')
+                // 无序列表 - 保留开头的"-"
+                .replace(/^([\*\+])\s+/gm, '- ')
+                // 有序列表（保留数字和点，只去除Markdown格式）
+                .replace(/^(\d+)\.\s+/gm, '$1. ')
+                // 表格
+                .replace(/^\|.+\|$/gm, '')
+                // 水平线
+                .replace(/^[-*_]{3,}$/gm, '')
+                // HTML标签（简单处理）
+                .replace(/<[^>]+>/g, '')
+                // 多余的空行
+                .replace(/\n\s*\n/g, '\n\n');
+        }
             
             async function copyToClipboard() {
                 if (!plainTextOutput.value.trim()) {
